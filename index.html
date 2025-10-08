@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesyonel Eğitim Quizi - Kodlama Desteği</title>
+    <style>
+        /* CSS kodlarımızın tamamı burada */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #zamanlayici {
+            font-size: 1.5em;
+            color: #d9534f;
+            text-align: right;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #d9534f;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .soru-alani {
+            border-top: 2px solid #337ab7;
+            padding-top: 15px;
+        }
+        
+        #aktif-soru-container {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .sonuc-alani {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9c5;
+            border: 2px solid #ffc107;
+            border-radius: 4px;
+            font-size: 1.2em;
+        }
+
+        /* --- RADYO BUTON VE BUTON STİLLERİ --- */
+
+        .secenek-label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+
+        .secenek-label:hover {
+            background-color: #e9ecef;
+        }
+
+        input[type="radio"] {
+            display: none; /* Radyo butonunun kendisini gizle */
+        }
+        
+        input[type="radio"]:checked + .secenek-label {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+        }
+        
+        button {
+            background-color: #337ab7;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>20 Soruluk Genel Yetenek Sınavı</h1>
+        <div id="zamanlayici">Kalan Süre: 30:00</div> 
+
+        <div class="soru-alani">
+            <h2><span id="soru-sayac">1</span>. Soru / 20</h2>
+            
+            <div id="aktif-soru-container">
+                Yükleniyor...
+            </div>
+
+            <button id="ileri-butonu" onclick="sonrakiSoru()">Sonraki Soru</button>
+            <button id="bitir-butonu" onclick="testiBitir()" style="display:none;">Testi Bitir ve Puanla</button>
+        </div>
+
+        <div class="sonuc-alani" style="display:none;">
+            <h3>Sınav Sonuçlarınız</h3>
+            <p>Doğru Cevap Sayısı: <span id="dogruSayisi">0</span></p>
+            <p>Yanlış Cevap Sayısı: <span id="yanlisSayisi">0</span></p>
+            <p>Boş Bırakılan Soru Sayısı: <span id="bosSayisi">0</span></p>
+            <p>Ham Puanınız: <span id="hamPuan">0</span></p>
+            
+            <button onclick="testiTekrarBaslat()">Sınavı Tekrar Başlat</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
